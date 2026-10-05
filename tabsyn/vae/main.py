@@ -81,7 +81,7 @@ def main(args):
         info = json.load(f)
 
     curr_dir = os.path.dirname(os.path.abspath(__file__))
-    ckpt_dir = f'{curr_dir}/ckpt/{dataname}' 
+    ckpt_dir = f'{curr_dir}/ckpt/run_{args.run_idx}/{dataname}' 
     if not os.path.exists(ckpt_dir):
         os.makedirs(ckpt_dir)
 

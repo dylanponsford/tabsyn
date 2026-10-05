@@ -4,7 +4,6 @@ import time
 from baselines.ctgan.data import read_csv
 from baselines.ctgan.models.tvae import TVAE
 
-
 def main(args):
     dataname = args.dataname
     save_path = args.save_path
@@ -21,9 +20,10 @@ def main(args):
     else:
         discrete = [info['column_names'][i] for i in (info['cat_col_idx'] + info['target_col_idx'])]
 
+    run_idx = args.run_idx
 
     syn_path = f'synthetic/{dataname}'
-    ckpt_path = f'{curr_dir}/ckpt/{dataname}/TVAE'
+    ckpt_path = f'{curr_dir}/ckpt/run_{run_idx}/{dataname}/TVAE'
     
     if not os.path.exists(syn_path):
         os.makedirs(syn_path)

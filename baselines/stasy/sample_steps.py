@@ -72,10 +72,12 @@ def main(args):
     save_path = args.save_path
 
     config = get_config(dataname)
+
+    run_idx = args.run_idx
     
     config.device = torch.device(f'cuda:{args.gpu}')
     curr_dir = os.path.dirname(os.path.abspath(__file__))
-    ckpt_dir = f'{curr_dir}/ckpt/{dataname}'
+    ckpt_dir = f'{curr_dir}/ckpt/run_{run_idx}/{dataname}'
     if not os.path.exists(ckpt_dir):
         os.makedirs(ckpt_dir)
 

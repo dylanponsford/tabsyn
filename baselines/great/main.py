@@ -15,17 +15,19 @@ def main(args):
     dataset_path = f'data/{dataname}/train.csv'
     train_df = pd.read_csv(dataset_path)
 
+    run_idx = args.run_idx
+
     curr_dir = os.path.dirname(os.path.abspath(__file__))
-    ckpt_dir = f'{curr_dir}/ckpt/{dataname}'
+    ckpt_dir = f'{curr_dir}/ckpt/run_{run_idx}/{dataname}'
 
     if not os.path.exists(ckpt_dir):
         os.makedirs(ckpt_dir)
 
     great = GReaT("distilgpt2",                         
               epochs=100,                             
-              save_steps=2000,                     
+              save_steps=20000,                     
               logging_steps=50,                    
-              experiment_dir=f"{curr_dir}/ckpt/{dataname}",
+              experiment_dir=ckpt_dir,
               batch_size=batch_size,
               #lr_scheduler_type="constant",        # Specify the learning rate scheduler 
               #learning_rate=5e-5                   # Set the inital learning rate

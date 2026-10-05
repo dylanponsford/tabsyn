@@ -19,7 +19,8 @@ def main(args):
     else:
         discrete = [info['column_names'][i] for i in (info['cat_col_idx'] + info['target_col_idx'])]
 
-    ckpt_path = f'baselines/ctgan/ckpt/{dataname}/CTGAN'
+    run_idx = args.run_idx
+    ckpt_path = f'baselines/ctgan/ckpt/run_{run_idx}/{dataname}/CTGAN'
     
     if not os.path.exists(ckpt_path):
         os.makedirs(ckpt_path)

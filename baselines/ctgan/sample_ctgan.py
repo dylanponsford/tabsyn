@@ -20,7 +20,8 @@ def main(args):
     else:
         discrete = [info['column_names'][i] for i in (info['cat_col_idx'] + info['target_col_idx'])]
 
-    ckpt_path = f'{curr_dir}/ckpt/{dataname}/CTGAN'
+    run_idx = args.run_idx
+    ckpt_path = f'{curr_dir}/ckpt/run_{run_idx}/{dataname}/CTGAN'
 
     data, discrete_columns = read_csv(data_path, discrete = discrete)
 

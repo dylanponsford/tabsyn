@@ -21,7 +21,9 @@ def main(args):
 
     curr_dir = os.path.dirname(os.path.abspath(__file__))
     dataset_dir = f'data/{dataname}'
-    ckpt_dir = f'{curr_dir}/ckpt/{dataname}'
+
+    run_idx = args.run_idx
+    ckpt_dir = f'{curr_dir}/ckpt/run_{run_idx}/{dataname}'
 
     if not os.path.exists(ckpt_dir):
         os.makedirs(ckpt_dir)

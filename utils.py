@@ -41,6 +41,8 @@ def get_args():
     parser.add_argument('--method', type=str, default='tabsyn', help='Method: tabsyn or baseline.')
     parser.add_argument('--gpu', type=int, default=0, help='GPU index.')
 
+    parser.add_argument('--run_idx', type=int, default=1, help='Run index for multiple runs of a baseline.')
+
 
     ''' configs for CTGAN '''
 

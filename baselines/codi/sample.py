@@ -75,8 +75,10 @@ def main(args):
         info = json.load(f)
     task_type = info['task_type']
 
+    run_idx = args.run_idx
+
     curr_dir = os.path.dirname(os.path.abspath(__file__))
-    ckpt_dir = f'{curr_dir}/ckpt/{dataname}'
+    ckpt_dir = f'{curr_dir}/ckpt/run_{run_idx}/{dataname}'
 
 
     train, train_con_data, train_dis_data, test, (transformer_con, transformer_dis, meta), con_idx, dis_idx = tabular_dataload.get_dataset(args) 

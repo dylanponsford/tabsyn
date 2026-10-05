@@ -15,8 +15,10 @@ def get_input_train(args):
     with open(f'{dataset_dir}/info.json', 'r') as f:
         info = json.load(f)
 
-    ckpt_dir = f'{curr_dir}/ckpt/{dataname}/'
-    embedding_save_path = f'{curr_dir}/vae/ckpt/{dataname}/train_z.npy'
+    run_idx = args.run_idx
+
+    ckpt_dir = f'{curr_dir}/ckpt/run_{run_idx}/{dataname}/'
+    embedding_save_path = f'{curr_dir}/vae/ckpt/run_{run_idx}/{dataname}/train_z.npy'
     train_z = torch.tensor(np.load(embedding_save_path)).float()
 
     train_z = train_z[:, 1:, :]
@@ -31,9 +33,11 @@ def get_input_train(args):
 def get_input_generate(args):
     dataname = args.dataname
 
+    run_idx = args.run_idx
+
     curr_dir = os.path.dirname(os.path.abspath(__file__))
     dataset_dir = f'data/{dataname}'
-    ckpt_dir = f'{curr_dir}/ckpt/{dataname}'
+    ckpt_dir = f'{curr_dir}/ckpt/run_{run_idx}/{dataname}'
 
     with open(f'{dataset_dir}/info.json', 'r') as f:
         info = json.load(f)
@@ -41,11 +45,11 @@ def get_input_generate(args):
     task_type = info['task_type']
 
 
-    ckpt_dir = f'{curr_dir}/ckpt/{dataname}'
+    ckpt_dir = f'{curr_dir}/ckpt/run_{run_idx}/{dataname}'
 
     _, _, categories, d_numerical, num_inverse, cat_inverse = preprocess(dataset_dir, task_type = task_type, inverse = True)
 
-    embedding_save_path = f'{curr_dir}/vae/ckpt/{dataname}/train_z.npy'
+    embedding_save_path = f'{curr_dir}/vae/ckpt/run_{run_idx}/{dataname}/train_z.npy'
     train_z = torch.tensor(np.load(embedding_save_path)).float()
 
     train_z = train_z[:, 1:, :]
@@ -56,7 +60,7 @@ def get_input_generate(args):
     train_z = train_z.view(B, in_dim)
     pre_decoder = Decoder_model(2, d_numerical, categories, 4, n_head = 1, factor = 32)
 
-    decoder_save_path = f'{curr_dir}/vae/ckpt/{dataname}/decoder.pt'
+    decoder_save_path = f'{curr_dir}/vae/ckpt/run_{run_idx}/{dataname}/decoder.pt'
     pre_decoder.load_state_dict(torch.load(decoder_save_path))
 
     info['pre_decoder'] = pre_decoder

@@ -34,10 +34,11 @@ def main(args):
               #learning_rate=5e-5                   # Set the inital learning rate
              )
     
-    model_save_path = f'{curr_dir}/ckpt/{dataname}/model.pt'
+    run_idx = args.run_idx
+    model_save_path = f'{curr_dir}/ckpt/run_{run_idx}/{dataname}/model.pt'
     great.model.load_state_dict(torch.load(model_save_path))
 
-    great.load_finetuned_model(f"{curr_dir}/ckpt/{dataname}/model.pt")
+    great.load_finetuned_model(f"{curr_dir}/ckpt/run_{run_idx}/{dataname}/model.pt")
 
     df = _array_to_dataframe(train_df, columns=None)
     great._update_column_information(df)

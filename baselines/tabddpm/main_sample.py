@@ -11,7 +11,8 @@ def main(args):
 
     curr_dir = os.path.dirname(os.path.abspath(__file__))
     config_path = f'{curr_dir}/configs/{dataname}.toml'
-    model_save_path = f'{curr_dir}/ckpt/{dataname}'
+    run_idx = args.run_idx
+    model_save_path = f'{curr_dir}/ckpt/run_{run_idx}/{dataname}'
     real_data_path = f'data/{dataname}'
     sample_save_path = args.save_path
 

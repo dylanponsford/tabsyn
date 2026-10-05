@@ -28,8 +28,10 @@ def main(args):
     
     config = get_config(dataname)
 
+    run_idx = args.run_idx
+
     curr_dir = os.path.dirname(os.path.abspath(__file__))
-    ckpt_dir = f'{curr_dir}/ckpt/{dataname}'
+    ckpt_dir = f'{curr_dir}/ckpt/run_{run_idx}/{dataname}'
     if not os.path.exists(ckpt_dir):
         os.makedirs(ckpt_dir)
 
